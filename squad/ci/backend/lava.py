@@ -5,6 +5,10 @@ import requests
 import ssl
 import traceback
 import yaml
+try:
+    from yaml import CLoader as yamlLoader
+except ImportError:
+    from yaml import Loader as yamlLoader
 import xmlrpc
 import zmq
 
@@ -206,7 +210,7 @@ class Backend(BaseBackend):
         tmp_dict = None
         tmp_key = None
         is_value = False
-        for event in yaml.parse(log_data, Loader=yaml.CLoader):
+        for event in yaml.parse(log_data, Loader=yamlLoader):
             if isinstance(event, yaml.MappingStartEvent):
                 start_dict = True
                 tmp_dict = {}
@@ -258,7 +262,7 @@ class Backend(BaseBackend):
                     suite['name'],
                     limit,
                     offset)
-                yaml_results = yaml.load(results, Loader=yaml.CLoader)
+                yaml_results = yaml.load(results, Loader=yamlLoader)
                 lava_job_results = lava_job_results + yaml_results
                 if len(yaml_results) == limit:
                     offset = offset + limit

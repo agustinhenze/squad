@@ -16,3 +16,10 @@ requests
 sqlparse
 svgwrite
 whitenoise
+# append requirements-dev
+django_extensions
+flake8
+ipython
+mock
+pickleshare
+Werkzeug

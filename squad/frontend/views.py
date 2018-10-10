@@ -455,3 +455,7 @@ def test_job(request, testjob_id):
             'testjob': testjob
         }
         return render(request, 'squad/testjob.html', context)
+
+
+def health(request):
+    return HttpResponse(Project.objects.count())

@@ -11,6 +11,7 @@ from . import user_settings
 from squad.core.models import slug_pattern
 
 urlpatterns = [
+    url(r'^health$', views.health),
     url(r'^favicon.ico$', lambda _: redirect(settings.MEDIA_URL + '/static/favicon.ico')),
     url(r'^robots.txt$', lambda _: HttpResponse("User-agent: *\nDisallow: /\n", content_type='text/plain')),
     url(r'^$', views.home, name='home'),
